@@ -1,0 +1,26 @@
+package com.example.demo;
+
+
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+
+//Removing the unwanted error paths from the Swagger2 Documentation
+@Configuration
+public class Swagger2Config {
+
+	@Bean
+	public Docket swaggerConfig() {
+		
+		return new Docket(DocumentationType.SWAGGER_2)
+				.select()
+				.paths(PathSelectors.ant("/api/*"))
+				.build();
+	}
+	
+}
